@@ -51,7 +51,33 @@ function day_2_part_1(input) {
 }
 
 function day_2_part_2(input) {
-  return;
+  // Data comes in the format "least-most letter: password" (eg. ["6-10 s: sadvasdasfvas"]), so i have to parse it first.
+
+  let valid_passwords = 0;
+
+  for (i in input) {
+    const data = day_2_parse(input[i]);
+
+    let first_index_is_letter = false;
+    let second_index_is_letter = false;
+
+    if (data.password[data.least_occurences - 1] === data.letter) {
+      first_index_is_letter = true;
+    }
+
+    if (data.password[data.most_occurences - 1] === data.letter) {
+      second_index_is_letter = true;
+    }
+
+    if (
+      (first_index_is_letter === true && second_index_is_letter === false) ||
+      (first_index_is_letter === false && second_index_is_letter === true)
+    ) {
+      valid_passwords += 1;
+    }
+  }
+
+  return valid_passwords;
 }
 
 const part_1_output = day_2_part_1(input_array);
