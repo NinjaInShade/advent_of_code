@@ -28,9 +28,26 @@ function day_2_parse(string) {
 function day_2_part_1(input) {
   // Data comes in the format "least-most letter: password" (eg. ["6-10 s: sadvasdasfvas"]), so i have to parse it first.
 
+  let valid_passwords = 0;
+
   for (i in input) {
+    let letter_counter = 0;
     const data = day_2_parse(input[i]);
+
+    // Loop through each character in the password, if the character is the desired letter, we add one to the counter to keep track of how many times that letter comes up.
+    for (j in data.password) {
+      if (data.password[j] === data.letter) {
+        letter_counter += 1;
+      }
+    }
+
+    // Check if the iterations of the desired letter is between the guidlines. If so, it is a valid password and the valid_passwords variable increases by 1.
+    if (letter_counter >= data.least_occurences && letter_counter <= data.most_occurences) {
+      valid_passwords += 1;
+    }
   }
+
+  return valid_passwords;
 }
 
 function day_2_part_2(input) {
