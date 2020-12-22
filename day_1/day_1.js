@@ -23,7 +23,7 @@ function day_1_part_1(input) {
 }
 
 function day_1_part_2(input) {
-  // 2 loops, once to ensure looping through whole array, and other to do the comparison against each other number.
+  // 3 loops, once to ensure looping through whole array, and other to do the comparison against each other number.
   for (i in input) {
     for (j in input) {
       // This if statement ensures the same index in the array is never added up.
