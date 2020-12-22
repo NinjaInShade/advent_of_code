@@ -1,9 +1,6 @@
-const fs = require("fs");
-const path = require("path");
+const parse_file = require("../parse_file.js");
 
-// Read the input file line by line, creating an array of inputs.
-const input_file = path.join(__dirname, "day_1_input.txt");
-let input_array = fs.readFileSync(input_file).toString().split("\r\n");
+const input_array = parse_file("day_1", "day_1_input.txt");
 
 function day_1_part_1(input) {
   // 2 loops, once to ensure looping through whole array, and other to do the comparison against each other number.
