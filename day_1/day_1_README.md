@@ -1,6 +1,6 @@
 # Day 1 challenge.
 
-[Day 1 challenge link](https://adventofcode.com/2020/day/2)
+[Day 1 challenge link](https://adventofcode.com/2020/day/1)
 
 ## Part 1
 
