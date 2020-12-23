@@ -1,6 +1,6 @@
 const parse_file = require("../parse_file.js");
 
-const input_array = parse_file("day_1", "day_1_input.txt");
+const input_array = parse_file("day_1", "day_1_input.txt", "\r\n");
 
 function day_1_part_1(input) {
   // 2 loops, once to ensure looping through whole array, and other to do the comparison against each other number.

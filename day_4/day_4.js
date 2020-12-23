@@ -1,8 +1,10 @@
 const parse_file = require("../parse_file.js");
 
-const input_array = parse_file("day_4", "day_4_input.txt");
+const input_array = parse_file("day_4", "day_4_input.txt", "\r\n\r\n");
 
 function day_4_part_1(input) {
+  console.log(input[0]);
+
   return 0;
 }
 

@@ -1,6 +1,6 @@
 const parse_file = require("../parse_file.js");
 
-const input_array = parse_file("day_3", "day_3_input.txt");
+const input_array = parse_file("day_3", "day_3_input.txt", "\r\n");
 
 function day_3_part_1(input, x_slope, y_slope) {
   // Variable to keep track of tree's we hit

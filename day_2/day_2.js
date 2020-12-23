@@ -1,6 +1,6 @@
 const parse_file = require("../parse_file.js");
 
-const input_array = parse_file("day_2", "day_2_input.txt");
+const input_array = parse_file("day_2", "day_2_input.txt", "\r\n");
 
 function day_2_parse(string) {
   // Initial split parses data into an array of 3 elements. ["least-most", "letter:", "password"] - eg ["6-10", "s:", "sadvasdasfvas"]
