@@ -1,10 +1,13 @@
+const run_validations = require("./validate_functions");
+
 const parse_file = require("../parse_file.js");
 
 const input_array = parse_file("day_4", "day_4_input.txt", "\r\n\r\n");
 
 function day_4_part_1(input) {
-  // Variable we return at end counting the valid passports.
-  let valid_passports = 0;
+  // Variables to keep track of amount of valid passports and the actual valid passports themselves for part 2.
+  let valid_passports_amount = 0;
+  let valid_passports_array = [];
 
   // Loop through each passport
   for (i in input) {
@@ -23,25 +26,50 @@ function day_4_part_1(input) {
 
     // If we have 8 fields ( all fields ) then it is a valid passport
     if (passport_fields.length === 8) {
-      valid_passports += 1;
+      valid_passports_amount += 1;
+      valid_passports_array.push(passport_fields);
       continue;
     }
 
     // Else we check if the length is 7 and the only missing field is cid, which makes it valid.
     if (passport_fields.length === 7 && !has_cid) {
-      valid_passports += 1;
+      valid_passports_amount += 1;
+      valid_passports_array.push(passport_fields);
       continue;
     }
+  }
+
+  return [valid_passports_amount, valid_passports_array];
+}
+
+function day_4_part_2(input) {
+  // The input we recieve for this should be all the passports with all required fields. In this function we will validate each passports' fields to determine if the overall passport is actually valid.
+  let valid_passports = 0;
+
+  // First loop for each passport.
+  for (i in input) {
+    let invalid_fields = 0;
+
+    // Second loop for it's fields, and to validate them. If any are invalid, that passports' overall validity is invalid.
+    for (k in input[i]) {
+      // Validates each field and returns 0 for valid and 1 for invalid field, then add it to the to the total invalid_fields for that passport.
+      let is_field_valid = run_validations(input[i][k]);
+      invalid_fields += is_field_valid;
+      console.log(`Field ${k}, Invalid fields ${invalid_fields}`);
+    }
+
+    // If there are no invalid fields, the passport is valid.
+    if (invalid_fields === 0) {
+      valid_passports += 1;
+    }
+
+    console.log("END OF PASSPORT");
   }
 
   return valid_passports;
 }
 
-function day_4_part_2(input) {
-  return 0;
-}
-
 const part_1_output = day_4_part_1(input_array);
-const part_2_output = day_4_part_2(input_array);
+const part_2_output = day_4_part_2(part_1_output[1]);
 
-console.log(`Part 1: ${part_1_output}\nPart 2: ${part_2_output}`);
+console.log(`Part 1: ${part_1_output[0]}\nPart 2: ${part_2_output}`);
