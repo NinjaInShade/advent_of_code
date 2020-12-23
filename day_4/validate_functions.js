@@ -71,6 +71,8 @@ function hcl_validation(value) {
     return 1;
   }
 
+  // I intended to use a for loop and check each value to be more efficient and make code more readable, but for some reason the program messed up if i even tried executing a for loop.
+  // 100% my syntax and everything was right... bit weird!
   if (!valid_chars.includes(value[1])) {
     return 1;
   }
