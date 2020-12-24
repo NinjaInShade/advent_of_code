@@ -29,16 +29,19 @@ function eyr_validation(value) {
 function hgt_validation(value) {
   // The pure int value without the measurement at the end
   const int_value = parseInt(value.slice(0, -2));
+
   // The type of measurement (cm or in)
   const measurement = value.slice(-2);
-  // Inch range check
+
+  // Inch and cm range checks
   if (measurement === "in") {
     return range_check(int_value, 59, 76);
   }
-  // Cm range check
+
   if (measurement === "cm") {
     return range_check(int_value, 150, 193);
   }
+
   // If measurement is not in/cm it isnt a valid height
   return 1;
 }
@@ -65,8 +68,8 @@ function pid_validation(value) {
 // (Hair Color) - a # followed by exactly six characters 0-9 or a-f.
 function hcl_validation(value) {
   const valid_chars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
-  console.log(value, "FIRST");
 
+  // Checks for if first index is not # or if there arent 6 chars after the first index which are both required validations.
   if (value[0] !== "#" || value.slice(1).length !== 6) {
     return 1;
   }
@@ -99,6 +102,7 @@ module.exports = function run_validations(string) {
   // String is in format type:value
   const type = string.slice(0, 3);
 
+  // Check the type of the string as each type requires different validations
   if (type == "eyr") {
     return eyr_validation(string.substring(4));
   }

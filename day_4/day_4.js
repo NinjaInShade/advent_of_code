@@ -55,15 +55,12 @@ function day_4_part_2(input) {
       // Validates each field and returns 0 for valid and 1 for invalid field, then add it to the to the total invalid_fields for that passport.
       let is_field_valid = run_validations(input[i][k]);
       invalid_fields += is_field_valid;
-      console.log(`Field ${k}, Invalid fields ${invalid_fields}`);
     }
 
     // If there are no invalid fields, the passport is valid.
     if (invalid_fields === 0) {
       valid_passports += 1;
     }
-
-    console.log("END OF PASSPORT");
   }
 
   return valid_passports;
