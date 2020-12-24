@@ -24,9 +24,10 @@ function partition(lower_letter, upper_letter, least, most, letter) {
   }
 
   // If letter is equal to the upper key letter, return upper half
-  if (letter === upper_letter)
+  if (letter === upper_letter) {
     // Returns array of the new least and most range.
     return upper_half;
+  }
 }
 
 // Util function to run my partition function until the result is found.
