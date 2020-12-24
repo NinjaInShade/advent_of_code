@@ -35,18 +35,10 @@ function run_partitions(lower_letter, upper_letter, starting_least, starting_mos
   // We store the least/most keep track of the ranges that get put back into the partition function,
   // and partition data's length dictates if it needs more partitioning
 
-  let least = starting_least;
-  let most = starting_most;
-  let partition_data;
+  let partition_data = [starting_least, starting_most];
 
   for (i in data) {
-    partition_data = partition(lower_letter, upper_letter, least, most, data[i]);
-
-    // If the returning array is length 2, meaning a least and most value is present, we set the least,most variables to the newer ones to be partitioned again
-    if (partition_data.length === 2) {
-      least = partition_data[0];
-      most = partition_data[1];
-    }
+    partition_data = partition(lower_letter, upper_letter, partition_data[0], partition_data[1], data[i]);
   }
 
   // Every letter was processed, so the partition has definately ended, and the array holds one value, the desired result.
