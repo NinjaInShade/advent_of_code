@@ -34,7 +34,7 @@
 
 - Every seat also has a unique seat ID: multiply the row by 8, then add the column. In this example, the seat has ID (44 \* 8) + 5 = 357.
 
-Return the seat with the highest ID.
+- Return the highest id from the boarding passes.
 
 ## Part 2
 
