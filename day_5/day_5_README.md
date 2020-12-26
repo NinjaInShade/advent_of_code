@@ -1,6 +1,6 @@
-# Day 4 challenge.
+# Day 5 challenge.
 
-[Day 4 challenge link](https://adventofcode.com/2020/day/4)
+[Day 5 challenge link](https://adventofcode.com/2020/day/5)
 
 ## Part 1
 
