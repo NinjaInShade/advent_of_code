@@ -1,6 +1,6 @@
 # Welcome
 
-## These are my submissions for the 2020 advent of code challenge. I have tested each submission to make sure it works.
+## These are my submissions for the 2020 advent of code challenge. I started on 2 days before the challenge ended and tried to do one challenge per day. I have tested each submission to make sure it works.
 
 ### I used javascript for this with node js so i don't need the browser. To test my output run node on the file. Every day's submission are 2 functions for each part of the challenge and i output results to both functions.
 
