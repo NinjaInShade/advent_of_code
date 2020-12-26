@@ -33,4 +33,6 @@
 
 ## Part 2
 
-- Unknown
+- You don't need to identify the questions to which anyone answered "yes"; you need to identify the questions to which everyone answered "yes"!
+
+- For each group, count the number of questions to which everyone answered "yes". Return the sum of these counts.
