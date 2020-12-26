@@ -2,47 +2,21 @@ const parse_file = require("../parse_file.js");
 
 const input_array = parse_file("day_5", "day_5_input.txt", "\r\n");
 
-// Binary partion function
-function partition(lower_letter, upper_letter, least, most, letter) {
-  const difference = most - least;
+function binary_partition(string, lower_char, upper_char, max) {
+  low = 0;
+  high = max;
 
-  if (difference === 1) {
-    if (letter === lower_letter) {
-      return [least];
+  for (let char of string) {
+    const mid = Math.floor((high + low) / 2);
+
+    if (char === lower_char) {
+      high = mid;
+    } else if (char === upper_char) {
+      low = mid;
     }
-
-    return [most];
   }
 
-  let lower_half = [least, (difference + 1) / 2 + (least - 1)];
-  let upper_half = [(difference + 1) / 2 + least, most];
-
-  // If letter is equal to the lower key letter, return lower half
-  if (letter === lower_letter) {
-    // Returns array of the new least and most range.
-    return lower_half;
-  }
-
-  // If letter is equal to the upper key letter, return upper half
-  if (letter === upper_letter) {
-    // Returns array of the new least and most range.
-    return upper_half;
-  }
-}
-
-// Util function to run my partition function until the result is found.
-function run_partitions(lower_letter, upper_letter, starting_least, starting_most, data) {
-  // We store the least/most keep track of the ranges that get put back into the partition function,
-  // and partition data's length dictates if it needs more partitioning
-
-  let partition_data = [starting_least, starting_most];
-
-  for (i in data) {
-    partition_data = partition(lower_letter, upper_letter, partition_data[0], partition_data[1], data[i]);
-  }
-
-  // Every letter was processed, so the partition has definately ended, and the array holds one value, the desired result.
-  return partition_data[0];
+  return low;
 }
 
 function day_5_part_1(input) {
@@ -55,10 +29,12 @@ function day_5_part_1(input) {
     let id;
 
     // Step 1. Figure out the row number for the boarding pass. The first 7 characters will tell us the needed information.
-    row = run_partitions("F", "B", 0, 127, input[i].slice(0, 7));
+    row = binary_partition(input[i].slice(0, 7), "F", "B", 128);
+    // row = run_partitions("F", "B", 0, 127, input[i].slice(0, 7));
 
     // Step 2. Figure out the column number for the boarding pass.
-    col = run_partitions("L", "R", 0, 7, input[i].slice(7));
+    col = binary_partition(input[i].slice(7), "L", "R", 8);
+    // col = run_partitions("L", "R", 0, 7, input[i].slice(7));
 
     // Step 3. Figure out ID. Do this by multiplying row by 8 then adding the column.
     id = row * 8 + col;
