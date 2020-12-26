@@ -38,4 +38,6 @@
 
 ## Part 2
 
-- Unknown
+- Your seat wasn't at the very front or back, though; the seats with IDs +1 and -1 from yours will be in your list.
+
+- Return your seat id.
