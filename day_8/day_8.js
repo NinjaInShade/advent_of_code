@@ -1,9 +1,54 @@
 const parse_file = require("../parse_file.js");
 
-const input_array = parse_file("day_5", "day_5_input.txt", "\r\n");
+const input_array = parse_file("day_8", "day_8_input.txt", "\r\n");
 
 function day_5_part_1(input) {
-  return 0;
+  // Since a jmp command jumps past certain commands, we can use a while loop and control the index ourselves.
+  let cmd_line = 0;
+  let accumulator = 0;
+
+  // Store every command so far.
+  const ran_commands = [];
+
+  // We use while to have control over which command(line) we read.
+  while (cmd_line < input.length) {
+    // Split data in 2
+    const initial_split = input[cmd_line].split(" ");
+
+    // Parse the initial split to 2 useful bits of information
+    const command = initial_split[0];
+    const sign = initial_split[1][0];
+    const number = initial_split[1].slice(1);
+
+    if (ran_commands.includes(`${command}${sign}${number}[${cmd_line}]`)) {
+      break;
+    }
+
+    ran_commands.push(`${command}${sign}${number}[${cmd_line}]`);
+
+    if (command === "acc") {
+      // Acc command
+      if (sign === "+") {
+        accumulator += parseInt(number);
+      } else {
+        accumulator -= parseInt(number);
+      }
+
+      cmd_line += 1;
+    } else if (command === "jmp") {
+      // Jump command
+      if (sign === "+") {
+        cmd_line += parseInt(number);
+      } else {
+        cmd_line -= parseInt(number);
+      }
+    } else {
+      // Nop command
+      cmd_line += 1;
+    }
+  }
+
+  return accumulator;
 }
 
 function day_5_part_2(input) {
